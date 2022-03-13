@@ -2,7 +2,7 @@ Package: @@PACKAGE@@
 Version: @@VERSION@@
 Section: misc
 Priority: optional
-Architecture: any
+Architecture: all
 Depends: dkms (>= 2.8), make (>= 4.2.1), linux-headers
 Maintainer: mob41 <mob41@users.noreply.github.com>
 Description: Playstation Joystick DKMS Modules
