@@ -5,6 +5,14 @@ Use the new `hid-sony` and `hid-playstation` modules from the mainline in old Li
 
 This package blacklists the existing `hid-sony` and `hid-playstation` kernel modules from loading. Instead, the new kernel modules `hid-sony-joy` and `hid-playstation-joy` provided by this package will be used instead.
 
+`console
+$ lsmod | grep joy
+hid_sony_joy           40960  0
+hid_playstation_joy    20480  0
+ff_memless             20480  2 hid_playstation_joy,hid_sony_joy
+joydev                 32768  0
+`
+
 ## How to install
 
 1. Download latest release from [here](https://github.com/m2robocon/playstation-joy-dkms/releases/latest), or build it yourself using the instructions below.
