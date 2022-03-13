@@ -1,0 +1,105 @@
+--- hid-sony-old.c	2022-03-13 10:35:20.714957595 +0000
++++ hid-sony-joy.c	2022-03-13 10:38:10.181359649 +0000
+@@ -583,10 +583,10 @@
+ 	bool hw_version_created;
+ 	u8 *output_report_dmabuf;
+ 
+-#ifdef CONFIG_SONY_FF
++//#ifdef CONFIG_SONY_FF
+ 	u8 left;
+ 	u8 right;
+-#endif
++//#endif
+ 
+ 	u8 mac_address[6];
+ 	u8 hotplug_worker_initialized;
+@@ -2233,10 +2233,10 @@
+ 	/* Initialize the report with default values */
+ 	memcpy(report, &default_report, sizeof(struct sixaxis_output_report));
+ 
+-#ifdef CONFIG_SONY_FF
++//#ifdef CONFIG_SONY_FF
+ 	report->rumble.right_motor_on = sc->right ? 1 : 0;
+ 	report->rumble.left_motor_force = sc->left;
+-#endif
++//#endif
+ 
+ 	report->leds_bitmap |= sc->led_state[0] << 1;
+ 	report->leds_bitmap |= sc->led_state[1] << 2;
+@@ -2301,12 +2301,12 @@
+ 		offset = 6;
+ 	}
+ 
+-#ifdef CONFIG_SONY_FF
++//#ifdef CONFIG_SONY_FF
+ 	buf[offset++] = sc->right;
+ 	buf[offset++] = sc->left;
+-#else
+-	offset += 2;
+-#endif
++//#else
++//	offset += 2;
++//#endif
+ 
+ 	/* LED 3 is the global control */
+ 	if (sc->led_state[3]) {
+@@ -2348,9 +2348,9 @@
+ 	report->g = sc->led_state[1];
+ 	report->b = sc->led_state[2];
+ 
+-#ifdef CONFIG_SONY_FF
++//#ifdef CONFIG_SONY_FF
+ 	report->rumble = max(sc->right, sc->left);
+-#endif
++//#endif
+ 
+ 	hid_hw_output_report(hdev, (u8 *)report, MOTION_REPORT_0x02_SIZE);
+ }
+@@ -2397,7 +2397,7 @@
+ 	return 0;
+ }
+ 
+-#ifdef CONFIG_SONY_FF
++//#ifdef CONFIG_SONY_FF
+ static int sony_play_effect(struct input_dev *dev, void *data,
+ 			    struct ff_effect *effect)
+ {
+@@ -2430,13 +2430,13 @@
+ 	return input_ff_create_memless(input_dev, NULL, sony_play_effect);
+ }
+ 
+-#else
+-static int sony_init_ff(struct sony_sc *sc)
+-{
+-	return 0;
+-}
+-
+-#endif
++//#else
++//static int sony_init_ff(struct sony_sc *sc)
++//{
++//	return 0;
++//}
++//
++//#endif
+ 
+ static int sony_battery_get_property(struct power_supply *psy,
+ 				     enum power_supply_property psp,
+@@ -3099,7 +3099,7 @@
+ 
+ static int sony_suspend(struct hid_device *hdev, pm_message_t message)
+ {
+-#ifdef CONFIG_SONY_FF
++//#ifdef CONFIG_SONY_FF
+ 
+ 	/* On suspend stop any running force-feedback events */
+ 	if (SONY_FF_SUPPORT) {
+@@ -3109,7 +3109,7 @@
+ 		sony_send_output_report(sc);
+ 	}
+ 
+-#endif
++//#endif
+ 	return 0;
+ }
+ 
