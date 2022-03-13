@@ -22,9 +22,18 @@ prepare:
 # make fake package root
 	mkdir -p $(DEB_BUILD_PATH)/DEBIAN
 	mkdir -p $(DKMS_SRC_PATH)
+# generate config and scripts from templates
 	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" dkms-template.conf > $(DKMS_SRC_PATH)/dkms.conf
 	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" control-template > $(DEB_BUILD_PATH)/DEBIAN/control
+	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" pre-uninstall-template.sh > $(DEB_BUILD_PATH)/DEBIAN/prerm
+	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" post-install-template.sh > $(DEB_BUILD_PATH)/DEBIAN/postinst
+	chmod 0555 $(DEB_BUILD_PATH)/DEBIAN/prerm
+	chmod 0555 $(DEB_BUILD_PATH)/DEBIAN/postinst
+# copy src
 	cp -v src/playstation-joy-dkms/* $(DKMS_SRC_PATH)/
+# copy modprobe config
+	mkdir -p $(DEB_BUILD_PATH)/etc/modprobe.d
+	cp -v playstation-joy-dkms.conf $(DEB_BUILD_PATH)/etc/modprobe.d/
 
 deb:
 	cd build; \
