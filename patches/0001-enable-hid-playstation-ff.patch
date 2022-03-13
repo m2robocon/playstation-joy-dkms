@@ -1,5 +1,5 @@
---- hid-playstation-old.c	2022-03-13 10:35:10.276668255 +0000
-+++ hid-playstation-joy.c	2022-03-13 10:36:17.901202246 +0000
+--- a/hid-playstation.c	2022-03-13 10:35:10.276668255 +0000
++++ b/hid-playstation.c	2022-03-13 10:36:17.901202246 +0000
 @@ -476,12 +476,12 @@
  	for (i = 0; i < ARRAY_SIZE(ps_gamepad_buttons); i++)
  		input_set_capability(gamepad, EV_KEY, ps_gamepad_buttons[i]);

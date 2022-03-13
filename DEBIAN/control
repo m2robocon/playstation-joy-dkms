@@ -1,8 +1,0 @@
-Package: playstation-joy-dkms
-Version: 0.1-1
-Architecture: any
-Maintainer: mob41 <mob41@users.noreply.github.com>
-Section: misc
-Priority: optional
-Standards-Version: 3.9.2
-Description: Use the new hid-sony and hid-playstation modules from the mainline in old Linux kernels!
