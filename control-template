@@ -1,5 +1,5 @@
-Package: PACKAGE
-Version: VERSION
+Package: @@PACKAGE@@
+Version: @@VERSION@@
 Section: misc
 Priority: optional
 Architecture: any

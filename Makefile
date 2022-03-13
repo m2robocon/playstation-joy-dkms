@@ -22,8 +22,8 @@ prepare:
 # make fake package root
 	mkdir -p $(DEB_BUILD_PATH)/DEBIAN
 	mkdir -p $(DKMS_SRC_PATH)
-	sed -e "s/PACKAGE/$(PACKAGE)/g" -e "s/VERSION/$(VERSION)/g" dkms-template.conf > $(DKMS_SRC_PATH)/dkms.conf
-	sed -e "s/PACKAGE/$(PACKAGE)/g" -e "s/VERSION/$(VERSION)/g" control-template > $(DEB_BUILD_PATH)/DEBIAN/control
+	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" dkms-template.conf > $(DKMS_SRC_PATH)/dkms.conf
+	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" control-template > $(DEB_BUILD_PATH)/DEBIAN/control
 	cp -v src/playstation-joy-dkms/* $(DKMS_SRC_PATH)/
 
 deb:
