@@ -5,33 +5,79 @@ Use the new `hid-sony` and `hid-playstation` modules from the mainline in old Li
 
 This package blacklists the existing `hid-sony` and `hid-playstation` kernel modules from loading. Instead, the new kernel modules `hid-sony-joy` and `hid-playstation-joy` provided by this package will be used instead.
 
-`console
+```console
 $ lsmod | grep joy
 hid_sony_joy           40960  0
 hid_playstation_joy    20480  0
 ff_memless             20480  2 hid_playstation_joy,hid_sony_joy
 joydev                 32768  0
-`
+```
 
 ## How to install
 
-1. Download latest release from [here](https://github.com/m2robocon/playstation-joy-dkms/releases/latest), or build it yourself using the instructions below.
-
-2. Install the deb package
-
-`sudo dpkg -i ./playstation-joy-dkms_20220314-1.deb`
-
-3. Reboot your computer to take effect
-
-`sudo reboot`
-
-## Building new Debian package (.deb) yourself
-
-1. You will need `git` and `make` to build the files. Installing `base-devel` in Ubuntu will do.
+1. Update your Ubuntu to the latest version first, and reboot (with the latest Linux kernel)
 
 ```bash
 sudo apt-get update
-sudo apt-get install base-devel
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo reboot
+```
+
+2. Prepare the environment for kernel module compiling
+
+    1.1. Ensure your `/etc/apt/sources.list` whether the below `deb-src` are enabled/uncommented or not. Replace `focal` with your distribution version of Ubuntu.
+
+        ```
+deb-src http://archive.ubuntu.com/ubuntu focal main
+deb-src http://archive.ubuntu.com/ubuntu focal-updates main
+```
+
+    1.2. Install the build dependencies of the linux kernel
+
+        ```bash
+sudo apt-get update
+sudo apt-get build-dep linux linux-image-$(uname -r)
+```
+
+Reference: https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel
+
+3. Download latest release from [here](https://github.com/m2robocon/playstation-joy-dkms/releases/latest), or build it yourself using the instructions below.
+
+4. Install required `playstation-joy-dkms` dependencies
+
+```bash
+sudo apt-get install build-essential dkms
+```
+
+5. Install the deb package
+
+```bash
+sudo apt-get install ./playstation-joy-dkms_20220314-1.deb
+
+# or
+
+sudo dpkg -i ./playstation-joy-dkms_20220314-1.deb
+
+```
+
+    - This command will automatically compile the DKMS modules upon install. If the build failed, verify have you installed the kernel build dependencies correctly.
+        - Retry DKMS installation: `sudo dkms autoinstall`
+        - If `make` keeps failing, manually debug by `cd` to `/usr/src/playstation-joy-dkms-VERSIONHERE` and run `make` here manually.
+
+6. Reboot your computer to take effect
+
+```bash
+sudo reboot
+```
+
+## Building new Debian package (.deb) yourself
+
+1. You will need `git` and `make` to build the files. Installing `build-essential` in Ubuntu will do.
+
+```bash
+sudo apt-get update
+sudo apt-get install git build-essential
 ```
 
 2. Clone or download this repository
