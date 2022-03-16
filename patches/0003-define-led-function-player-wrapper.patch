@@ -1,0 +1,17 @@
+--- a/hid-playstation-joy.c	2022-03-16 17:36:24.952763122 +0800
++++ b/hid-playstation-joy.c	2022-03-16 17:37:19.668809887 +0800
+@@ -19,6 +19,14 @@
+ 
+ #include "hid-ids.h"
+ 
++#ifndef LED_FUNCTION_PLAYER1
++#define LED_FUNCTION_PLAYER1 "player-1"
++#define LED_FUNCTION_PLAYER2 "player-2"
++#define LED_FUNCTION_PLAYER3 "player-3"
++#define LED_FUNCTION_PLAYER4 "player-4"
++#define LED_FUNCTION_PLAYER5 "player-5"
++#endif
++
+ /* List of connected playstation devices. */
+ static DEFINE_MUTEX(ps_devices_lock);
+ static LIST_HEAD(ps_devices_list);

@@ -19,6 +19,8 @@ prepare:
 # apply patches
 	patch -u src/linux/drivers/hid/hid-playstation.c patches/0001-enable-hid-playstation-ff.patch
 	patch -u src/linux/drivers/hid/hid-sony.c patches/0002-enable-hid-sony-ff.patch
+	patch -u src/linux/drivers/hid/hid-playstation.c patches/0003-define-led-function-player-wrapper.patch
+	patch -u src/linux/drivers/hid/hid-sony.c patches/0004-revert-hid-sony-no-hid-is-usb.patch
 # make fake package root
 	mkdir -p $(DEB_BUILD_PATH)/DEBIAN
 	mkdir -p $(DKMS_SRC_PATH)

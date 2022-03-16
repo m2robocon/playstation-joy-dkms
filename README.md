@@ -124,7 +124,8 @@ make all
     - Handles the deb packaging
 
 ## Referenced kernel
-Sources of `hid-sony` and `hid-playstation` are checked out from the kernel.org tag `v5.15`.
+Sources of `hid-sony` and `hid-playstation` are checked out to the `master` branch using the mainline drivers.
+Multiple patches are applied to make it work with older kernels.
 
 To use an another version of reference kernel. `cd` to the `src/linux` submodule and checkout the commit or tag you want:
 
