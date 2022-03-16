@@ -24,33 +24,29 @@ sudo apt-get dist-upgrade
 sudo reboot
 ```
 
-2. Prepare the environment for kernel module compiling
-
-    2.1. Ensure your `/etc/apt/sources.list` whether the below `deb-src` are enabled/uncommented or not. Replace `focal` with your distribution version of Ubuntu.
+2. Prepare the environment for kernel module compiling. Ensure your `/etc/apt/sources.list` whether the below `deb-src` are enabled/uncommented or not. Replace `focal` with your distribution version of Ubuntu.
 
 ```bash
 deb-src http://archive.ubuntu.com/ubuntu focal main
 deb-src http://archive.ubuntu.com/ubuntu focal-updates main
 ```
 
-    2.2. Install the build dependencies of the linux kernel
+3. Install the build dependencies of the linux kernel
 
 ```bash
 sudo apt-get update
 sudo apt-get build-dep linux linux-image-$(uname -r)
 ```
 
-    Reference: https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel
+4. Download latest release from [here](https://github.com/m2robocon/playstation-joy-dkms/releases/latest), or build it yourself using the instructions below.
 
-3. Download latest release from [here](https://github.com/m2robocon/playstation-joy-dkms/releases/latest), or build it yourself using the instructions below.
-
-4. Install required `playstation-joy-dkms` dependencies
+5. Install required `playstation-joy-dkms` dependencies
 
 ```bash
 sudo apt-get install build-essential dkms
 ```
 
-5. Install the deb package
+6. Install the deb package
 
 ```bash
 sudo apt-get install ./playstation-joy-dkms_20220314-1.deb
@@ -61,11 +57,11 @@ sudo dpkg -i ./playstation-joy-dkms_20220314-1.deb
 
 ```
 
-    - This command will automatically compile the DKMS modules upon install. If the build failed, verify have you installed the kernel build dependencies correctly.
-        - Retry DKMS installation: `sudo dkms autoinstall`
-        - If `make` keeps failing, manually debug by `cd` to `/usr/src/playstation-joy-dkms-VERSIONHERE` and run `make` here manually.
+- This command will automatically compile the DKMS modules upon install. If the build failed, verify have you installed the kernel build dependencies correctly.
+    - Retry DKMS installation: `sudo dkms autoinstall`
+    - If `make` keeps failing, manually debug by `cd` to `/usr/src/playstation-joy-dkms-VERSIONHERE` and run `make` here manually.
 
-6. Reboot your computer to take effect
+7. Reboot your computer to take effect
 
 ```bash
 sudo reboot
