@@ -26,21 +26,21 @@ sudo reboot
 
 2. Prepare the environment for kernel module compiling
 
-    1.1. Ensure your `/etc/apt/sources.list` whether the below `deb-src` are enabled/uncommented or not. Replace `focal` with your distribution version of Ubuntu.
+    2.1. Ensure your `/etc/apt/sources.list` whether the below `deb-src` are enabled/uncommented or not. Replace `focal` with your distribution version of Ubuntu.
 
-```
+```bash
 deb-src http://archive.ubuntu.com/ubuntu focal main
 deb-src http://archive.ubuntu.com/ubuntu focal-updates main
 ```
 
-    1.2. Install the build dependencies of the linux kernel
+    2.2. Install the build dependencies of the linux kernel
 
 ```bash
 sudo apt-get update
 sudo apt-get build-dep linux linux-image-$(uname -r)
 ```
 
-Reference: https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel
+    Reference: https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel
 
 3. Download latest release from [here](https://github.com/m2robocon/playstation-joy-dkms/releases/latest), or build it yourself using the instructions below.
 
