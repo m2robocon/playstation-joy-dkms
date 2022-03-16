@@ -28,17 +28,17 @@ sudo reboot
 
     1.1. Ensure your `/etc/apt/sources.list` whether the below `deb-src` are enabled/uncommented or not. Replace `focal` with your distribution version of Ubuntu.
 
-        ```
+```
 deb-src http://archive.ubuntu.com/ubuntu focal main
 deb-src http://archive.ubuntu.com/ubuntu focal-updates main
-        ```
+```
 
     1.2. Install the build dependencies of the linux kernel
 
-        ```bash
+```bash
 sudo apt-get update
 sudo apt-get build-dep linux linux-image-$(uname -r)
-        ```
+```
 
 Reference: https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel
 
