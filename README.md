@@ -67,6 +67,12 @@ sudo dpkg -i ./playstation-joy-dkms_20220314-1.deb
 sudo reboot
 ```
 
+## How to Uninstall?
+
+So easy, just do this:
+
+`sudo apt-get remove --purge playstation-joy-dkms`
+
 ## Building new Debian package (.deb) yourself
 
 1. You will need `git` and `make` to build the files. Installing `build-essential` in Ubuntu will do.
