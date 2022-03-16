@@ -25,7 +25,6 @@ prepare:
 	mkdir -p $(DEB_BUILD_PATH)/DEBIAN
 	mkdir -p $(DKMS_SRC_PATH)
 # generate config and scripts from templates
-	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" dkms-template.conf > $(DKMS_SRC_PATH)/dkms.conf; \
 	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" control-template > $(DEB_BUILD_PATH)/DEBIAN/control; \
 	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" pre-uninstall-template.sh > $(DEB_BUILD_PATH)/DEBIAN/prerm; \
 	sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" post-install-template.sh > $(DEB_BUILD_PATH)/DEBIAN/postinst
@@ -41,8 +40,10 @@ prepare:
 		cp -v src/playstation-joy-dkms/leds.h $(DKMS_SRC_PATH)/; \
 		cp -v src/playstation-joy-dkms/led-class-multicolor.* $(DKMS_SRC_PATH)/; \
 		cp -v src/playstation-joy-dkms/Makefile.multicolor $(DKMS_SRC_PATH)/Makefile; \
+		sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" dkms-multicolor-template.conf > $(DKMS_SRC_PATH)/dkms.conf; \
 	else \
 		cp -v src/playstation-joy-dkms/Makefile.default $(DKMS_SRC_PATH)/Makefile; \
+		sed -e "s/@@PACKAGE@@/$(PACKAGE)/g" -e "s/@@VERSION@@/$(VERSION)/g" dkms-template.conf > $(DKMS_SRC_PATH)/dkms.conf; \
 	fi
 	cp -v src/playstation-joy-dkms/hid-* $(DKMS_SRC_PATH)/
 # copy modprobe config
