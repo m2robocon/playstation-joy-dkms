@@ -38,6 +38,12 @@ sudo apt-get update
 sudo apt-get build-dep linux linux-image-$(uname -r)
 ```
 
+> ::warning:: If you are using a kernel version below `5.9`, you must use the deb package ending with `-multicolor`.
+> `5.9` kernels or older has no support for the LED class multicolor. This flag includes the patches and kernels for that.
+
+> ::warning:: If you are using a kernel version higher or equal to `5.9`, you must **NOT** use the `-multicolor` package to avoid conflicts with the existing `led-class-multicolor` module.
+> You can check by doing `modinfo led-class-multicolor` 
+
 4. Download latest release from [here](https://github.com/m2robocon/playstation-joy-dkms/releases/latest), or build it yourself using the instructions below.
 
 5. Install required `playstation-joy-dkms` dependencies
@@ -95,6 +101,8 @@ PACKAGE=playstation-joy-dkms
 VERSION=20220314-1
 ```
 
+If you used the `INCLUDE_LED_CLASS_MULTICOLOR=true` flag, make sure to add `-multicolor` to the back of the version string to indicate it.
+
 4. Package it with `make`
 
 ```bash
@@ -104,7 +112,11 @@ make deb # package into deb
 
 # or simply:
 
+# normal packaging without led-class-multicolor
 make all
+
+# package with led-class-multicolor
+INCLUDE_LED_CLASS_MULTICOLOR=true make all
 ```
 
 ## What files are they?

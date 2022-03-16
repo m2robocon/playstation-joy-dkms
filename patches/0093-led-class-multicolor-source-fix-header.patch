@@ -1,0 +1,11 @@
+--- led-class-multicolor-old.c	2022-03-16 19:06:04.611023929 +0000
++++ led-class-multicolor.c	2022-03-16 19:08:24.118355092 +0000
+@@ -5,7 +5,7 @@
+ 
+ #include <linux/device.h>
+ #include <linux/init.h>
+-#include <linux/led-class-multicolor.h>
++#include "led-class-multicolor.h"
+ #include <linux/module.h>
+ #include <linux/slab.h>
+ #include <linux/uaccess.h>

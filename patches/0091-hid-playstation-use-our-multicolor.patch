@@ -1,0 +1,11 @@
+--- hid-playstation-joy-old.c	2022-03-16 19:32:42.637553700 +0000
++++ hid-playstation-joy.c	2022-03-16 19:07:41.529202002 +0000
+@@ -12,7 +12,7 @@
+ #include <linux/idr.h>
+ #include <linux/input/mt.h>
+ #include <linux/leds.h>
+-#include <linux/led-class-multicolor.h>
++#include "led-class-multicolor.h"
+ #include <linux/module.h>
+ 
+ #include <asm/unaligned.h>

@@ -1,0 +1,12 @@
+--- led-class-multicolor-old.h	2022-03-16 19:06:09.468540801 +0000
++++ led-class-multicolor.h	2022-03-16 19:33:18.023039699 +0000
+@@ -30,7 +30,7 @@
+ 	return container_of(led_cdev, struct led_classdev_mc, led_cdev);
+ }
+ 
+-#if IS_ENABLED(CONFIG_LEDS_CLASS_MULTICOLOR)
++#if 1
+ /**
+  * led_classdev_multicolor_register_ext - register a new object of led_classdev
+  *				      class with support for multicolor LEDs
+
