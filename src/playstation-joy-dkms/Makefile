@@ -1,3 +1,5 @@
+CONFIG_MODULE_SIG=n
+
 obj-m += hid-playstation-joy.o hid-sony-joy.o
 
 KERNEL_SRC ?= /lib/modules/$(shell uname -r)/build
