@@ -1,5 +1,5 @@
 PACKAGE=playstation-joy-dkms
-VERSION=20220317-1-multicolor
+VERSION=20220325-1-multicolornoff
 DEB_BUILD_PATH=build/$(PACKAGE)_$(VERSION)
 DKMS_SRC_PATH=build/$(PACKAGE)_$(VERSION)/usr/src/$(PACKAGE)-$(VERSION)
 
@@ -17,8 +17,8 @@ prepare:
 	cd src/linux; \
 	git reset --hard
 # apply patches
-	patch -u src/linux/drivers/hid/hid-playstation.c patches/0001-enable-hid-playstation-ff.patch
-	patch -u src/linux/drivers/hid/hid-sony.c patches/0002-enable-hid-sony-ff.patch
+#	patch -u src/linux/drivers/hid/hid-playstation.c patches/0001-enable-hid-playstation-ff.patch
+#	patch -u src/linux/drivers/hid/hid-sony.c patches/0002-enable-hid-sony-ff.patch
 	patch -u src/linux/drivers/hid/hid-playstation.c patches/0003-define-led-function-player-wrapper.patch
 	patch -u src/linux/drivers/hid/hid-sony.c patches/0004-revert-hid-sony-no-hid-is-usb.patch
 # make fake package root
